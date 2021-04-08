@@ -1,0 +1,38 @@
+package be.mips.fhir.be.lab.report.factory;
+
+import org.apache.commons.collections4.Factory;
+import org.hl7.fhir.r4.model.Coding;
+
+import be.mips.fhir.be.lab.report.builders.CodingBuilder;
+import be.mips.fhir.be.lab.report.enums.CodingBuilderType;
+
+public class CodingFactory implements Factory<Coding> {
+
+	public Coding create() {
+		return create(CodingBuilderType.DEFAULT);
+	}
+
+	public Coding create(CodingBuilderType type) {
+		return build(type).build();		
+	}
+
+	public CodingBuilder build(CodingBuilderType type) {
+		CodingBuilder builder;
+		switch(type) {
+			case DIAGNOSTIC_SERVICE_SECTION_ID:
+				builder = new CodingBuilder()
+					.withSystem("http://terminology.hl7.org/CodeSystem/v2-0074");
+				break;
+			case LOINC:
+				builder = new CodingBuilder()
+					.withSystem("http://loinc.org");
+			break;
+				
+			default:
+				builder = new CodingBuilder();
+				break;
+		}
+		return builder;
+	}
+
+}
