@@ -18,6 +18,7 @@ import org.hl7.fhir.r4.model.Meta;
 import org.hl7.fhir.r4.model.Narrative;
 import org.hl7.fhir.r4.model.Narrative.NarrativeStatus;
 import org.hl7.fhir.r4.model.Reference;
+import org.hl7.fhir.r4.model.Specimen;
 
 public class DiagnosticReportBuilder implements Builder<DiagnosticReport> {
 	private final DiagnosticReport diagnosticReport;
@@ -158,11 +159,15 @@ public class DiagnosticReportBuilder implements Builder<DiagnosticReport> {
 		return this;
 	}
 
+	public DiagnosticReportBuilder addSpecimen(Specimen specimen) {
+		Reference reference = new Reference();
+		reference.setResource(specimen);
+		diagnosticReport.addSpecimen(reference);
+		return this;		
+	}
+	
 	public DiagnosticReport build() {
 		return diagnosticReport;
 	}
-
-
-
 
 }

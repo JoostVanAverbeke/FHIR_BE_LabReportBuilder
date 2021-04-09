@@ -20,11 +20,13 @@ import be.mips.fhir.be.lab.report.builders.ObservationBuilder;
 import be.mips.fhir.be.lab.report.builders.QuantityBuilder;
 import be.mips.fhir.be.lab.report.enums.CodingBuilderType;
 import be.mips.fhir.be.lab.report.enums.DiagnosticReportBuilderType;
+import be.mips.fhir.be.lab.report.enums.ObservationBuilderType;
 import be.mips.fhir.be.lab.report.enums.PatientBuilderType;
 import be.mips.fhir.be.lab.report.enums.PractitionerBuilderType;
 import be.mips.fhir.be.lab.report.enums.SpecimenBuilderType;
 import be.mips.fhir.be.lab.report.factory.CodingFactory;
 import be.mips.fhir.be.lab.report.factory.DiagnosticReportFactory;
+import be.mips.fhir.be.lab.report.factory.ObservationFactory;
 import be.mips.fhir.be.lab.report.factory.PatientFactory;
 import be.mips.fhir.be.lab.report.factory.PractitionerFactory;
 import be.mips.fhir.be.lab.report.factory.SpecimenFactory;
@@ -65,6 +67,9 @@ public class FhirBeLabReportExampleBuilder {
 	      
 	      // Add patient and observations to the bioChemistry report
 	      bioChemistryReportBuilder.addResults(patient, observationBuilders);
+	      
+	      // Add specimen to bioChemistry diagnostic report
+	      bioChemistryReportBuilder.addSpecimen(specimen);
 	      
 	      // Create a Bundle
 	      BundleBuilder bundleBuilder = new BundleBuilder()
@@ -116,11 +121,12 @@ public class FhirBeLabReportExampleBuilder {
 		Calendar effectiveDateTime = new Calendar.Builder()
 		        .setDate(2021, 3, 20)
 		        .build();
-	    
+	    ObservationFactory observationFactory = new ObservationFactory();
 		// Create Hematology observation resources
         
 		// Create Hemoglobine Observation
-		ObservationBuilder hgbObservationBuilder = new ObservationBuilder()
+		ObservationBuilder hgbObservationBuilder = observationFactory
+			.build(ObservationBuilderType.FHIR_BE)
 		    .withId("observation1")
             .withStatus(ObservationStatus.FINAL)
             .withCode(new CodeableConceptBuilder()
@@ -135,10 +141,16 @@ public class FhirBeLabReportExampleBuilder {
 		        .withUnit("g/dL")
                 .withCode("g/dL")
                 .withSystem("http://unitsofmeasure.org")
-				.build());
+				.build())
+	        .addInterpretation(new CodingFactory()
+					.build(CodingBuilderType.V3_OBSERVATION_INTERPRETATION)
+					.withCode("L")
+					.withDisplay("Low"));
+            
   
         // Create Hematocriet Observation
-        ObservationBuilder hctObservationBuilder = new ObservationBuilder()
+        ObservationBuilder hctObservationBuilder = observationFactory
+    		.build(ObservationBuilderType.FHIR_BE)
 		    .withId("observation2")
 	        .withStatus(ObservationStatus.FINAL)
 	        .withCode(new CodeableConceptBuilder()
@@ -153,10 +165,15 @@ public class FhirBeLabReportExampleBuilder {
 		        .withUnit("%")
 	            .withCode("%")
 	            .withSystem("http://unitsofmeasure.org")
-				.build());
-  
+				.build())
+	        .addInterpretation(new CodingFactory()
+					.build(CodingBuilderType.V3_OBSERVATION_INTERPRETATION)
+					.withCode("L")
+					.withDisplay("Low"));
+
         // Create WBC Observation
-        ObservationBuilder wbcObservationBuilder = new ObservationBuilder()
+        ObservationBuilder wbcObservationBuilder = observationFactory
+    			.build(ObservationBuilderType.FHIR_BE)
     		    .withId("observation3")
     	        .withStatus(ObservationStatus.FINAL)
     	        .withCode(new CodeableConceptBuilder()
@@ -175,7 +192,8 @@ public class FhirBeLabReportExampleBuilder {
     				.build());
 
         // Create Normoblasten Observation
-        ObservationBuilder normoBlastenObservationBuilder = new ObservationBuilder()
+        ObservationBuilder normoBlastenObservationBuilder = observationFactory
+    			.build(ObservationBuilderType.FHIR_BE)
     		    .withId("observation4")
     	        .withStatus(ObservationStatus.FINAL)
     	        .withCode(new CodeableConceptBuilder()
@@ -195,7 +213,8 @@ public class FhirBeLabReportExampleBuilder {
 
         // Create chemistry observation resources
         // Create sodium Observation
-        ObservationBuilder naObservationBuilder = new ObservationBuilder()
+        ObservationBuilder naObservationBuilder = observationFactory
+    		.build(ObservationBuilderType.FHIR_BE)
 		    .withId("observation5")
 	        .withStatus(ObservationStatus.FINAL)
 	        .withCode(new CodeableConceptBuilder()
@@ -213,7 +232,8 @@ public class FhirBeLabReportExampleBuilder {
 				.build());
 
         // Create potasium Observation
-        ObservationBuilder kaObservationBuilder = new ObservationBuilder()
+        ObservationBuilder kaObservationBuilder = observationFactory
+    			.build(ObservationBuilderType.FHIR_BE)
     		    .withId("observation6")
     	        .withStatus(ObservationStatus.FINAL)
     	        .withCode(new CodeableConceptBuilder()
@@ -231,7 +251,8 @@ public class FhirBeLabReportExampleBuilder {
     				.build());
   
         // Create chloor Observation
-        ObservationBuilder clObservationBuilder = new ObservationBuilder()
+        ObservationBuilder clObservationBuilder = observationFactory
+    			.build(ObservationBuilderType.FHIR_BE)
     		    .withId("observation7")
     	        .withStatus(ObservationStatus.FINAL)
     	        .withCode(new CodeableConceptBuilder()
@@ -249,7 +270,8 @@ public class FhirBeLabReportExampleBuilder {
     				.build());
 
         // Create bicarbonate Observation
-        ObservationBuilder carbObservationBuilder = new ObservationBuilder()
+        ObservationBuilder carbObservationBuilder = observationFactory
+    			.build(ObservationBuilderType.FHIR_BE)
     		    .withId("observation8")
     	        .withStatus(ObservationStatus.FINAL)
     	        .withCode(new CodeableConceptBuilder()

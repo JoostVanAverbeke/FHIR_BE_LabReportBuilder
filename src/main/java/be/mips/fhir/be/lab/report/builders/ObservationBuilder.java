@@ -6,6 +6,7 @@ import java.util.Date;
 import org.apache.commons.lang3.builder.Builder;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Meta;
 import org.hl7.fhir.r4.model.Observation;
@@ -97,9 +98,29 @@ public class ObservationBuilder implements Builder<Observation> {
 		return this;		
 	}
 	
+	public ObservationBuilder addInterpretation(Coding code) {
+		CodeableConcept codeableConcept = new CodeableConceptBuilder()
+				.addCoding(code)
+				.build();
+		return addInterpretation(codeableConcept);
+	}
+	
+	public ObservationBuilder addInterpretation(CodingBuilder codeBuilder) {
+		CodeableConcept codeableConcept = new CodeableConceptBuilder()
+				.addCoding(codeBuilder)
+				.build();
+		return addInterpretation(codeableConcept);
+	}
+
+	public ObservationBuilder addInterpretation(CodeableConcept interpretation) {
+		observation.addInterpretation(interpretation);
+		return this;
+	}
+	
 	public Observation build() {
 		return observation;
 	}
+
 
 
 }

@@ -47,7 +47,8 @@ public class SpecimenFactory implements Factory<Specimen> {
 				.withType(new CodeableConceptBuilder()
 						.addCoding(new CodingFactory()
 								.build(CodingBuilderType.HL7_VERSION_2_TABLE_0487)
-								.withCode("BLD")));
+								.withCode("BLD")
+								.withDisplay("Whole blood")));
 			break;
 		default:
 			specimenBuilder = new SpecimenBuilder();

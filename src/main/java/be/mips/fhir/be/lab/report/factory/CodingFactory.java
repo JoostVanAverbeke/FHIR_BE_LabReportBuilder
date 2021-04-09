@@ -31,6 +31,9 @@ public class CodingFactory implements Factory<Coding> {
 				builder = new CodingBuilder()
 					.withSystem("http://terminology.hl7.org/CodeSystem/v2-0487");
 				break;
+			case V3_OBSERVATION_INTERPRETATION:
+				builder = new CodingBuilder()
+				.withSystem("http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation");				
 			default:
 				builder = new CodingBuilder();
 				break;
