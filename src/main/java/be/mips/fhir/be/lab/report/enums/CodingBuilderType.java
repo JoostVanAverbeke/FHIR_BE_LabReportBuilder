@@ -5,5 +5,6 @@ public enum CodingBuilderType {
 	RANDOM, 
 	DEFAULT, 
 	DIAGNOSTIC_SERVICE_SECTION_ID, 
-	LOINC
+	LOINC, 
+	HL7_VERSION_2_TABLE_0487
 }

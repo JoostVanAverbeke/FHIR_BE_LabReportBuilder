@@ -32,7 +32,8 @@ public class IdentifierFactory implements Factory<Identifier> {
 				.withSystem("https://www.ehealth.fgov.be/standards/fhir/NamingSystem/nihdi");
 			break;
 		case RANDOM:
-			identifierBuilder = new IdentifierBuilder();			
+			identifierBuilder = new IdentifierBuilder();
+			break;
 		default:
 			identifierBuilder = new IdentifierBuilder();
 			break;

@@ -10,7 +10,9 @@ import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Meta;
 import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Observation.ObservationStatus;
+import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Reference;
+import org.hl7.fhir.r4.model.Specimen;
 import org.hl7.fhir.r4.model.Type;
 
 public class ObservationBuilder implements Builder<Observation> {
@@ -79,7 +81,25 @@ public class ObservationBuilder implements Builder<Observation> {
 		return this;
 	}
 	
+
+	public ObservationBuilder addPerformer(Practitioner performer) {
+		Reference reference = new Reference();
+		reference.setResource(performer);
+		observation.addPerformer(reference);
+		return this;
+	}
+	
+
+	public ObservationBuilder setSpecimen(Specimen specimen) {
+		Reference reference = new Reference();
+		reference.setResource(specimen);
+		observation.setSpecimen(reference);
+		return this;		
+	}
+	
 	public Observation build() {
 		return observation;
 	}
+
+
 }

@@ -26,8 +26,11 @@ public class CodingFactory implements Factory<Coding> {
 			case LOINC:
 				builder = new CodingBuilder()
 					.withSystem("http://loinc.org");
-			break;
-				
+				break;
+			case HL7_VERSION_2_TABLE_0487:
+				builder = new CodingBuilder()
+					.withSystem("http://terminology.hl7.org/CodeSystem/v2-0487");
+				break;
 			default:
 				builder = new CodingBuilder();
 				break;

@@ -1,5 +1,7 @@
 package be.mips.fhir.be.lab.report.builders;
 
+import java.util.List;
+
 import org.apache.commons.lang3.builder.Builder;
 import org.hl7.fhir.instance.model.api.IIdType;
 import org.hl7.fhir.r4.model.Bundle;
@@ -49,8 +51,17 @@ public class BundleBuilder implements Builder<Bundle> {
 		return addEntry(entry);
 	}
 	
+	public BundleBuilder addEntries(List<ObservationBuilder> observationBuilders) {
+		for (ObservationBuilder observationBuilder : observationBuilders) {
+			addEntry(observationBuilder.build());
+		}
+		return this;
+	}
+	
 	public Bundle build() {
 		return bundle;
 	}
+
+
 
 }

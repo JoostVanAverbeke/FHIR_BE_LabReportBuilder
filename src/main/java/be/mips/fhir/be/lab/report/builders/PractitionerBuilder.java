@@ -1,6 +1,7 @@
 package be.mips.fhir.be.lab.report.builders;
 
 import org.apache.commons.lang3.builder.Builder;
+import org.hl7.fhir.r4.model.HumanName;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Meta;
 import org.hl7.fhir.r4.model.Practitioner;
@@ -33,6 +34,11 @@ public class PractitionerBuilder implements Builder<Practitioner> {
 	
 	public PractitionerBuilder addIdentifier(Identifier identifier) {
 		practitioner.addIdentifier(identifier);
+		return this;
+	}
+	
+	public PractitionerBuilder addName(HumanName humanName) {
+		practitioner.addName(humanName);
 		return this;
 	}
 
