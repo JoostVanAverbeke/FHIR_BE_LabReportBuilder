@@ -1,6 +1,7 @@
 package be.mips.fhir.be.lab.report.builders;
 
 import org.apache.commons.lang3.builder.Builder;
+import org.hl7.fhir.instance.model.api.IIdType;
 import org.hl7.fhir.r4.model.HumanName;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Patient;
@@ -27,9 +28,9 @@ public class PatientBuilder implements Builder<Patient> {
 		return this;
 	}
 
-	public PatientBuilder withId(String id) {
-		if (id != null) {
-			patient.setId(id);
+	public PatientBuilder withId(IIdType idType) {
+		if (idType != null) {
+			patient.setId(idType);
 		}
 		return this;
 	}

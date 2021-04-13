@@ -1,6 +1,7 @@
 package be.mips.fhir.be.lab.report.builders;
 
 import org.apache.commons.lang3.builder.Builder;
+import org.hl7.fhir.instance.model.api.IIdType;
 import org.hl7.fhir.r4.model.HumanName;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Meta;
@@ -14,8 +15,8 @@ public class PractitionerBuilder implements Builder<Practitioner> {
 		practitioner = new Practitioner();
 	}
 	
-	public PractitionerBuilder withId(String id) {
-		practitioner.setId(id);
+	public PractitionerBuilder withId(IIdType idType) {
+		practitioner.setId(idType);
 		return this;
 	}
 	

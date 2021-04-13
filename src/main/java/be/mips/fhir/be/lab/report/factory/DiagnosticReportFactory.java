@@ -6,6 +6,7 @@ import java.util.Date;
 import org.apache.commons.collections4.Factory;
 import org.hl7.fhir.r4.model.DiagnosticReport;
 import org.hl7.fhir.r4.model.DiagnosticReport.DiagnosticReportStatus;
+import org.hl7.fhir.r4.model.IdType;
 
 import be.mips.fhir.be.lab.report.builders.CodeableConceptBuilder;
 import be.mips.fhir.be.lab.report.builders.DiagnosticReportBuilder;
@@ -29,12 +30,12 @@ public class DiagnosticReportFactory implements Factory<DiagnosticReport> {
 		DiagnosticReportBuilder builder;
 		switch(type) {
 		case BIOCHEMISTRY:
-			Calendar effectiveCalendar = new Calendar.Builder().setDate(2021, 3, 20).build();
+			Calendar effectiveCalendar = new Calendar.Builder().setDate(2021, Calendar.APRIL, 20).build();
 			builder = new DiagnosticReportBuilder()
-				.withid("BiochemistryDiagnosticReport1")
+				.withId(IdType.newRandomUuid())
 				.withLanguage("en")
-				.withText("This example is presented as a Collection bundle for ease of understanding." + 
-						"It makes no assumption towards any final implementation of using FHIR technically.")
+//				.withText("This example is presented as a Collection bundle for ease of understanding." + 
+//						"It makes no assumption towards any final implementation of using FHIR technically.")
 				.addIdentifier(new IdentifierBuilder()
 						.withSystem("http://acme.com/lab/reports")
 						.withValue("y4502347523")

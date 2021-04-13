@@ -29,6 +29,14 @@ public class CodeableConceptFactory implements Factory<CodeableConcept> {
 						.withDisplay("Laboratory")
 						.build());
 			break;
+		case LABORATORY_OBSERVATION_CATEGORY:
+			builder = new CodeableConceptBuilder()
+			.addCoding(new CodingFactory()
+					.build(CodingBuilderType.OBSERVATION_CATEGORY)
+					.withCode("laboratory")
+					.withDisplay("Laboratory")
+					.build());
+			break;
 		default:
 			builder = new CodeableConceptBuilder();
 			break;

@@ -1,6 +1,7 @@
 package be.mips.fhir.be.lab.report.factory;
 
 import org.apache.commons.collections4.Factory;
+import org.hl7.fhir.r4.model.IdType;
 import org.hl7.fhir.r4.model.Patient;
 
 import be.mips.fhir.be.lab.report.builders.PatientBuilder;
@@ -15,7 +16,7 @@ public class PatientFactory implements Factory<Patient> {
 		switch (type) {
 			case SIMPLE:
 				patient = new PatientBuilder()
-					.withId("patient1")
+					.withId(IdType.newRandomUuid())
 					.addName(new HumanNameFactory().create(HumanNameBuilderType.SIMPLE))
 					.addIdentifier(new IdentifierFactory().create(IdentfierBuilderType.SIMPLE))
 					.build();

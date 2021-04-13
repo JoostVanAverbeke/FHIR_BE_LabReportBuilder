@@ -1,6 +1,7 @@
 package be.mips.fhir.be.lab.report.factory;
 
 import org.apache.commons.collections4.Factory;
+import org.hl7.fhir.r4.model.IdType;
 import org.hl7.fhir.r4.model.Practitioner;
 
 import com.github.javafaker.Faker;
@@ -33,7 +34,7 @@ public class PractitionerFactory implements Factory<Practitioner> {
 		switch(type) {
 		case SIMPLE:
 			builder = new PractitionerBuilder()
-				.withId("practitioner11")
+				.withId(IdType.newRandomUuid())
 				.withMeta(new MetaBuilder()
 						.addProfile("https://www.ehealth.fgov.be/standards/fhir/StructureDefinition/be-practitioner"))
 				.addIdentifier(new IdentifierFactory()
@@ -43,7 +44,7 @@ public class PractitionerFactory implements Factory<Practitioner> {
 		case RANDOM:
 			String id = String.valueOf(faker.number().randomNumber());
 			builder = new PractitionerBuilder()
-				.withId("practitioner_" + id)
+				.withId(IdType.newRandomUuid())
 				.withMeta(new MetaBuilder()
 						.addProfile("https://www.ehealth.fgov.be/standards/fhir/StructureDefinition/be-practitioner"))
 				.addName(new HumanNameFactory().create(HumanNameBuilderType.RANDOM))

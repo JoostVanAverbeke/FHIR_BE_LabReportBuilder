@@ -47,6 +47,7 @@ public class BundleBuilder implements Builder<Bundle> {
 	
 	public BundleBuilder addEntry(Resource resource) {
 		BundleEntryComponent entry = new BundleEntryComponent();
+		entry.setFullUrl(resource.getIdElement().getValue());
 		entry.setResource(resource);
 		return addEntry(entry);
 	}

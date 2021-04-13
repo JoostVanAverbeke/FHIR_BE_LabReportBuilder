@@ -33,7 +33,16 @@ public class CodingFactory implements Factory<Coding> {
 				break;
 			case V3_OBSERVATION_INTERPRETATION:
 				builder = new CodingBuilder()
-				.withSystem("http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation");				
+					.withSystem("http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation");
+				break;
+			case SNOMED:
+				builder = new CodingBuilder()
+					.withSystem("http://snomed.info/sct");
+				break;
+			case OBSERVATION_CATEGORY:				
+				builder = new CodingBuilder()
+					.withSystem("http://terminology.hl7.org/CodeSystem/observation-category");
+				break;
 			default:
 				builder = new CodingBuilder();
 				break;

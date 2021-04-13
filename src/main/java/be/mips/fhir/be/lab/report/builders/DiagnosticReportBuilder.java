@@ -12,7 +12,6 @@ import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.DiagnosticReport;
 import org.hl7.fhir.r4.model.DiagnosticReport.DiagnosticReportMediaComponent;
 import org.hl7.fhir.r4.model.DiagnosticReport.DiagnosticReportStatus;
-import org.hl7.fhir.r4.model.IdType;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Meta;
 import org.hl7.fhir.r4.model.Narrative;
@@ -34,12 +33,6 @@ public class DiagnosticReportBuilder implements Builder<DiagnosticReport> {
 	public DiagnosticReportBuilder withId(IIdType idType) {
 		diagnosticReport.setId(idType);
 		return this;
-	}
-	
-	public DiagnosticReportBuilder withid(String id) {
-		IIdType idType = new IdType();
-		idType.setValue(id);
-		return withId(idType);
 	}
 	
 	public DiagnosticReportBuilder withLanguage(String language) {

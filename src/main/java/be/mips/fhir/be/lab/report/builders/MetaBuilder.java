@@ -11,6 +11,11 @@ public class MetaBuilder implements Builder<Meta> {
 		meta = new Meta();
 	}
 	
+	public MetaBuilder withVersionId(String versionId) {
+		meta.setVersionId(versionId);
+		return this;
+	}
+	
 	public MetaBuilder addProfile(String profile) {
 		meta.addProfile(profile);
 		return this;

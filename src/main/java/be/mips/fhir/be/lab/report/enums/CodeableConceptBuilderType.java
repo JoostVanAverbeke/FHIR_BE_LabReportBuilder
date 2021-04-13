@@ -4,5 +4,6 @@ public enum CodeableConceptBuilderType {
 	SIMPLE, 
 	RANDOM, 
 	DEFAULT, 
-	LABORATORY
+	LABORATORY, 
+	LABORATORY_OBSERVATION_CATEGORY
 }

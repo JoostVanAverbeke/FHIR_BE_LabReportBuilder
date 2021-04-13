@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.apache.commons.lang3.builder.Builder;
 import org.hl7.fhir.instance.model.api.IBaseResource;
+import org.hl7.fhir.instance.model.api.IIdType;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.DateTimeType;
@@ -27,7 +28,7 @@ public class ObservationBuilder implements Builder<Observation> {
 					"https://www.ehealth.fgov.be/standards/fhir/StructureDefinition/be-observation-laboratory"));
 	}
 	
-	public ObservationBuilder withId(String id) {
+	public ObservationBuilder withId(IIdType id) {
 		observation.setId(id);
 		return this;
 	}
@@ -117,9 +118,19 @@ public class ObservationBuilder implements Builder<Observation> {
 		return this;
 	}
 	
+	public ObservationBuilder addCategory(CodeableConcept codeableConcept) {
+		observation.addCategory(codeableConcept);
+		return this;
+	}
+	
+	public ObservationBuilder addCategory(CodeableConceptBuilder builder) {
+		return addCategory(builder.build());
+	}
+	
 	public Observation build() {
 		return observation;
 	}
+
 
 
 

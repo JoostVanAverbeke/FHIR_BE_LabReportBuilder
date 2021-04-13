@@ -1,0 +1,664 @@
+{
+  "resourceType": "Bundle",
+  "identifier": {
+    "use": "official",
+    "system": "urn:ietf:rfc:3986"
+  },
+  "type": "collection",
+  "entry": [ {
+    "fullUrl": "urn:uuid:fbcce27f-d957-44d8-a913-ac8453bb70ad",
+    "resource": {
+      "resourceType": "DiagnosticReport",
+      "meta": {
+        "versionId": "1",
+        "profile": [ "https://www.ehealth.fgov.be/standards/fhir/StructureDefinition/be-laboratory-report" ]
+      },
+      "language": "en",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\"> Hematology studies (set) </div><table class=\"hapiPropertyTable\"><tbody><tr><td>Status</td><td>FINAL</td></tr><tr><td>Issued</td><td> 13 April 2021 14:38:14</td></tr><tr><td>Conclusion</td><td>The JVA conclusion</td></tr></tbody></table><table class=\"hapiTableOfValues\"><thead><tr><td>Name</td><td>Value</td><td>Interpretation</td><td>Reference Range</td><td>Status</td></tr></thead><tbody><tr class=\"hapiTableOfValuesRowOdd\"><td> Uitzicht serum/plasma </td><td/><td/><td/><td>CANCELLED</td></tr><tr class=\"hapiTableOfValuesRowEven\"><td> Hemoglobin [Mass/volume] in Blood </td><td>11.6 g/dL </td><td> Low </td><td/><td>FINAL</td></tr><tr class=\"hapiTableOfValuesRowOdd\"><td> Hematocrit [Volume Fraction] of Blood by Automated count </td><td>35.6 % </td><td> Low </td><td/><td>FINAL</td></tr><tr class=\"hapiTableOfValuesRowEven\"><td> Leukocytes [#/volume] in Blood by Automated count </td><td>LESS_THAN35.6 10E3/µL </td><td/><td/><td>FINAL</td></tr><tr class=\"hapiTableOfValuesRowOdd\"><td> Nucleated erythrocytes/100 leukocytes [Ratio] in Blood by Automated count </td><td>LESS_THAN1.0 /100 WBC </td><td/><td/><td>FINAL</td></tr><tr class=\"hapiTableOfValuesRowEven\"><td> Sodium [Moles/volume] in Serum or Plasma </td><td>138 mmol/L </td><td/><td/><td>FINAL</td></tr><tr class=\"hapiTableOfValuesRowOdd\"><td> Potassium [Moles/volume] in Blood </td><td>4.1 mmol/L </td><td/><td/><td>FINAL</td></tr><tr class=\"hapiTableOfValuesRowEven\"><td> Chloride [Moles/volume] in Serum or Plasma </td><td>106 mmol/L </td><td/><td/><td>FINAL</td></tr><tr class=\"hapiTableOfValuesRowOdd\"><td> Bicarbonate [Moles/volume] standard in Arterial blood </td><td>24 mmol/L </td><td/><td/><td>FINAL</td></tr><tr class=\"hapiTableOfValuesRowEven\"><td> Urea [Mass/volume] in Serum or Plasma </td><td>46 mg/dL </td><td> High </td><td/><td>FINAL</td></tr><tr class=\"hapiTableOfValuesRowOdd\"><td> Creatinine [Mass/volume] in Serum or Plasma </td><td>46 mg/dL </td><td/><td/><td>FINAL</td></tr><tr class=\"hapiTableOfValuesRowEven\"><td> Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (CKD-EPI) </td><td>46 mL/min </td><td/><td/><td>FINAL</td></tr><tr class=\"hapiTableOfValuesRowOdd\"><td> C reactive protein [Mass/volume] in Serum or Plasma </td><td>26.9 mg/dL </td><td> High </td><td/><td>FINAL</td></tr></tbody></table></div>"
+      },
+      "identifier": [ {
+        "use": "official",
+        "system": "http://acme.com/lab/reports",
+        "value": "y4502347523"
+      } ],
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+          "code": "LAB",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "18723-7",
+          "display": "Hematology studies (set)"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "resultsInterpreter": [ {
+        "reference": "urn:uuid:ea1cc332-70ac-4c6a-bffb-070b7c958abc"
+      } ],
+      "specimen": [ {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      } ],
+      "result": [ {
+        "reference": "urn:uuid:749c6338-7cf0-43b2-9bc8-1ffe9228babe"
+      }, {
+        "reference": "urn:uuid:6a9ae77f-0d20-492f-ac69-42bdd30218d6"
+      }, {
+        "reference": "urn:uuid:7fe2493b-6fb6-47bd-93ce-23826d41b4c3"
+      }, {
+        "reference": "urn:uuid:368188c3-320c-42e5-b85d-daf053c4c537"
+      }, {
+        "reference": "urn:uuid:d23b98eb-b499-4f36-9b0d-b8ed1de56bf8"
+      }, {
+        "reference": "urn:uuid:dec39cfc-57cd-4030-8b01-96e1dbc5106c"
+      }, {
+        "reference": "urn:uuid:7eacb95a-c791-4ead-8ee3-895ceabf23b3"
+      }, {
+        "reference": "urn:uuid:c395e8b7-2286-4b93-b88f-37dbed6ee646"
+      }, {
+        "reference": "urn:uuid:6e10602e-773c-47e5-8b7b-dc83b5b63c40"
+      }, {
+        "reference": "urn:uuid:4625231e-5d6c-482b-b782-72299fbd384f"
+      }, {
+        "reference": "urn:uuid:5a9dd0bc-a8fb-4b71-8dee-a2b3e8366e22"
+      }, {
+        "reference": "urn:uuid:80a2b4bd-6eae-49c3-a418-73c6baf70772"
+      }, {
+        "reference": "urn:uuid:0ff2b9aa-8765-4405-aeee-906fceb2b4a2"
+      } ],
+      "conclusion": "The JVA conclusion"
+    }
+  }, {
+    "fullUrl": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72",
+    "resource": {
+      "resourceType": "Patient",
+      "text": {
+        "status": "generated",
+        "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><div class=\"hapiHeaderText\">Bart <b>SIMPHSON </b></div><table class=\"hapiPropertyTable\"><tbody><tr><td>Identifier</td><td>12345</td></tr></tbody></table></div>"
+      },
+      "identifier": [ {
+        "use": "official",
+        "system": "https://www.ehealth.fgov.be/standards/fhir/NamingSystem/ssin",
+        "value": "12345"
+      } ],
+      "name": [ {
+        "use": "official",
+        "family": "Simphson",
+        "given": [ "Bart" ]
+      } ]
+    }
+  }, {
+    "fullUrl": "urn:uuid:ea1cc332-70ac-4c6a-bffb-070b7c958abc",
+    "resource": {
+      "resourceType": "Practitioner",
+      "identifier": [ {
+        "use": "official",
+        "system": "https://www.ehealth.fgov.be/standards/fhir/NamingSystem/nihdi",
+        "value": "554488997"
+      } ]
+    }
+  }, {
+    "fullUrl": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4",
+    "resource": {
+      "resourceType": "Practitioner",
+      "identifier": [ {
+        "use": "official",
+        "system": "https://www.ehealth.fgov.be/standards/fhir/NamingSystem/nihdi",
+        "value": "6927"
+      } ],
+      "name": [ {
+        "use": "official",
+        "family": "O'Connell",
+        "given": [ "Bryce" ]
+      } ]
+    }
+  }, {
+    "fullUrl": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c",
+    "resource": {
+      "resourceType": "Specimen",
+      "identifier": [ {
+        "use": "official",
+        "system": "https://www.mips.random.be",
+        "value": "402438148"
+      } ],
+      "status": "available",
+      "type": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/v2-0487",
+          "code": "BLD",
+          "display": "Whole blood"
+        } ]
+      },
+      "receivedTime": "2021-04-13T14:38:14+02:00",
+      "collection": {
+        "collectedDateTime": "2021-04-20T00:00:00+02:00",
+        "method": {
+          "coding": [ {
+            "system": "http://snomed.info/sct",
+            "code": "28520004",
+            "display": "Venipuncture for blood test (procedure)"
+          } ]
+        }
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:749c6338-7cf0-43b2-9bc8-1ffe9228babe",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "cancelled",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "9991-9",
+          "display": "Uitzicht serum/plasma"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:6a9ae77f-0d20-492f-ac69-42bdd30218d6",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "718-7",
+          "display": "Hemoglobin [Mass/volume] in Blood"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "valueQuantity": {
+        "value": 11.6,
+        "unit": "g/dL",
+        "system": "http://unitsofmeasure.org",
+        "code": "g/dL"
+      },
+      "interpretation": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code": "L",
+          "display": "Low"
+        } ],
+        "text": "Low"
+      } ],
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:7fe2493b-6fb6-47bd-93ce-23826d41b4c3",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "4544-3",
+          "display": "Hematocrit [Volume Fraction] of Blood by Automated count"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "valueQuantity": {
+        "value": 35.6,
+        "unit": "%",
+        "system": "http://unitsofmeasure.org",
+        "code": "%"
+      },
+      "interpretation": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code": "L",
+          "display": "Low"
+        } ],
+        "text": "Low"
+      } ],
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:368188c3-320c-42e5-b85d-daf053c4c537",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "6690-2",
+          "display": "Leukocytes [#/volume] in Blood by Automated count"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "valueQuantity": {
+        "value": 35.6,
+        "comparator": "<",
+        "unit": "10E3/µL",
+        "system": "http://unitsofmeasure.org",
+        "code": "10*3/uL"
+      },
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:d23b98eb-b499-4f36-9b0d-b8ed1de56bf8",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "58413-6",
+          "display": "Nucleated erythrocytes/100 leukocytes [Ratio] in Blood by Automated count"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "valueQuantity": {
+        "value": 1.0,
+        "comparator": "<",
+        "unit": "/100 WBC",
+        "system": "http://unitsofmeasure.org",
+        "code": "/100{WBC}"
+      },
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:dec39cfc-57cd-4030-8b01-96e1dbc5106c",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "2951-2",
+          "display": "Sodium [Moles/volume] in Serum or Plasma"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "valueQuantity": {
+        "value": 138,
+        "unit": "mmol/L",
+        "system": "http://unitsofmeasure.org",
+        "code": "mmol/L"
+      },
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:7eacb95a-c791-4ead-8ee3-895ceabf23b3",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "6298-4",
+          "display": "Potassium [Moles/volume] in Blood"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "valueQuantity": {
+        "value": 4.1,
+        "unit": "mmol/L",
+        "system": "http://unitsofmeasure.org",
+        "code": "mmol/L"
+      },
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:c395e8b7-2286-4b93-b88f-37dbed6ee646",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "2075-0",
+          "display": "Chloride [Moles/volume] in Serum or Plasma"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "valueQuantity": {
+        "value": 106,
+        "unit": "mmol/L",
+        "system": "http://unitsofmeasure.org",
+        "code": "mmol/L"
+      },
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:6e10602e-773c-47e5-8b7b-dc83b5b63c40",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "19230-2",
+          "display": "Bicarbonate [Moles/volume] standard in Arterial blood"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "valueQuantity": {
+        "value": 24,
+        "unit": "mmol/L",
+        "system": "http://unitsofmeasure.org",
+        "code": "mmol/L"
+      },
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:4625231e-5d6c-482b-b782-72299fbd384f",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "3091-6",
+          "display": "Urea [Mass/volume] in Serum or Plasma"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "valueQuantity": {
+        "value": 46,
+        "unit": "mg/dL",
+        "system": "http://unitsofmeasure.org",
+        "code": "mg/dL"
+      },
+      "interpretation": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code": "H",
+          "display": "High"
+        } ],
+        "text": "High"
+      } ],
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:5a9dd0bc-a8fb-4b71-8dee-a2b3e8366e22",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "2160-0",
+          "display": "Creatinine [Mass/volume] in Serum or Plasma"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "valueQuantity": {
+        "value": 46,
+        "unit": "mg/dL",
+        "system": "http://unitsofmeasure.org",
+        "code": "mg/dL"
+      },
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:80a2b4bd-6eae-49c3-a418-73c6baf70772",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "62238-1",
+          "display": "Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (CKD-EPI)"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "valueQuantity": {
+        "value": 46,
+        "unit": "mL/min",
+        "system": "http://unitsofmeasure.org",
+        "code": "mL/min"
+      },
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  }, {
+    "fullUrl": "urn:uuid:0ff2b9aa-8765-4405-aeee-906fceb2b4a2",
+    "resource": {
+      "resourceType": "Observation",
+      "status": "final",
+      "category": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        } ]
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://loinc.org",
+          "code": "1988-5",
+          "display": "C reactive protein [Mass/volume] in Serum or Plasma"
+        } ]
+      },
+      "subject": {
+        "reference": "urn:uuid:e754c4d4-60b8-453b-a31d-5a7db18a6d72"
+      },
+      "effectiveDateTime": "2021-04-20T00:00:00+02:00",
+      "issued": "2021-04-13T14:38:14.303+02:00",
+      "performer": [ {
+        "reference": "urn:uuid:118c0b57-a37b-45fb-a354-b5d832ce2ef4"
+      } ],
+      "valueQuantity": {
+        "value": 26.9,
+        "unit": "mg/dL",
+        "system": "http://unitsofmeasure.org",
+        "code": "mg/dL"
+      },
+      "interpretation": [ {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code": "H",
+          "display": "High"
+        } ],
+        "text": "High"
+      } ],
+      "specimen": {
+        "reference": "urn:uuid:919841be-5089-4992-aa62-e257fda3fe8c"
+      }
+    }
+  } ]
+}
