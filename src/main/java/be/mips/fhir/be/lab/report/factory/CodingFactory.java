@@ -35,6 +35,10 @@ public class CodingFactory implements Factory<Coding> {
 				builder = new CodingBuilder()
 					.withSystem("http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation");
 				break;
+			case OBSERVATION_REFERENCE_RANGE_MEANING_CODES:
+				builder = new CodingBuilder()
+					.withSystem("http://terminology.hl7.org/CodeSystem/referencerange-meaning");
+				break;
 			case SNOMED:
 				builder = new CodingBuilder()
 					.withSystem("http://snomed.info/sct");

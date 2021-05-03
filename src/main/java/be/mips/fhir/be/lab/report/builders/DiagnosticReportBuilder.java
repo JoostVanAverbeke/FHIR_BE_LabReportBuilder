@@ -16,8 +16,11 @@ import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Meta;
 import org.hl7.fhir.r4.model.Narrative;
 import org.hl7.fhir.r4.model.Narrative.NarrativeStatus;
+import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Specimen;
+
+import be.mips.fhir.be.lab.report.models.ObservationRequestGroup;
 
 public class DiagnosticReportBuilder implements Builder<DiagnosticReport> {
 	private final DiagnosticReport diagnosticReport;
@@ -65,6 +68,12 @@ public class DiagnosticReportBuilder implements Builder<DiagnosticReport> {
 	public DiagnosticReportBuilder withCode(CodeableConcept code) {
 		diagnosticReport.setCode(code);
 		return this;
+	}
+
+	public DiagnosticReportBuilder addBasedOn(ServiceRequestBuilder serviceRequestBuilder) {
+		Reference reference = new Reference();
+		reference.setResource(serviceRequestBuilder.build());
+		return addBasedOn(reference);
 	}
 
 	public DiagnosticReportBuilder addBasedOn(Reference reference) {
@@ -143,11 +152,15 @@ public class DiagnosticReportBuilder implements Builder<DiagnosticReport> {
 		return this;
 	}
 
-	public DiagnosticReportBuilder addResults(IBaseResource subject, List<ObservationBuilder> observationBuilders) {
+	public DiagnosticReportBuilder addObservationRequestGroups(IBaseResource subject, List<ObservationRequestGroup> observationRequestGroups) {
 		withSubject(subject);
-		for (ObservationBuilder observationBuilder : observationBuilders) {
-			observationBuilder.withSubject(subject);
-			addResult(observationBuilder);
+		for (ObservationRequestGroup observationRequestGroup : observationRequestGroups) {
+			addBasedOn(observationRequestGroup.getServiceRequestBuilder());
+			observationRequestGroup.getServiceRequestBuilder().withSubject(subject);
+			for (ObservationBuilder observationBuilder : observationRequestGroup.getObservations()) {
+				observationBuilder.withSubject(subject);
+				addResult(observationBuilder);				
+			}
 		}
 		return this;
 	}
@@ -159,8 +172,15 @@ public class DiagnosticReportBuilder implements Builder<DiagnosticReport> {
 		return this;		
 	}
 	
+	public DiagnosticReportBuilder addPerformer(Practitioner performer) {
+		diagnosticReport.addPerformer().setResource(performer);
+		return this;
+	}
+	
 	public DiagnosticReport build() {
 		return diagnosticReport;
 	}
+
+
 
 }

@@ -6,16 +6,22 @@ import java.util.Date;
 import org.apache.commons.lang3.builder.Builder;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.instance.model.api.IIdType;
+import org.hl7.fhir.r4.model.Annotation;
 import org.hl7.fhir.r4.model.CodeableConcept;
 import org.hl7.fhir.r4.model.Coding;
 import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Meta;
 import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Observation.ObservationStatus;
+import org.hl7.fhir.r4.model.Quantity.QuantityComparator;
 import org.hl7.fhir.r4.model.Practitioner;
+import org.hl7.fhir.r4.model.Quantity;
 import org.hl7.fhir.r4.model.Reference;
 import org.hl7.fhir.r4.model.Specimen;
 import org.hl7.fhir.r4.model.Type;
+
+import be.mips.fhir.be.lab.report.enums.CodeableConceptBuilderType;
+import be.mips.fhir.be.lab.report.factory.CodeableConceptFactory;
 
 public class ObservationBuilder implements Builder<Observation> {
 
@@ -92,7 +98,7 @@ public class ObservationBuilder implements Builder<Observation> {
 	}
 	
 
-	public ObservationBuilder setSpecimen(Specimen specimen) {
+	public ObservationBuilder withSpecimen(Specimen specimen) {
 		Reference reference = new Reference();
 		reference.setResource(specimen);
 		observation.setSpecimen(reference);
@@ -127,11 +133,57 @@ public class ObservationBuilder implements Builder<Observation> {
 		return addCategory(builder.build());
 	}
 	
+	public ObservationBuilder addNote(Annotation note) {
+		observation.addNote(note);
+		return this;
+	}
+	
+
+	public ObservationBuilder addHasMember(ObservationBuilder observationBuilder) {
+		return addHasMember(observationBuilder.build());
+	}
+
+	public ObservationBuilder addHasMember(IBaseResource resource) {
+		Reference reference = new Reference();
+		reference.setResource(resource);
+		observation.addHasMember(reference);
+		return this;
+	}
+	
+	public ObservationBuilder addBasedOn(IBaseResource resource) {
+		Reference reference = new Reference();
+		reference.setResource(resource);
+		observation.addBasedOn(reference);
+		return this;
+	}
+	
+	public ObservationBuilder addBasedOn(ServiceRequestBuilder serviceRequestBuilder) {
+		return addBasedOn(serviceRequestBuilder.build());		
+	}
+	
+	public ObservationBuilder addReferenceRange(double low, double high) {
+		observation.addReferenceRange()
+			.setLow(new Quantity(low))
+			.setHigh(new Quantity(high))
+			.setType(new CodeableConceptFactory()
+					.build(CodeableConceptBuilderType.OBSERVATION_REFERENCE_RANGE_NORMAL)
+					.build());
+		return this;
+	}
+	
+	public ObservationBuilder addReferenceRange(QuantityComparator comparator, double high) {
+		observation.addReferenceRange()
+			.setHigh(new Quantity()
+					.setComparator(comparator).setValue(high))
+			.setType(new CodeableConceptFactory()
+					.build(CodeableConceptBuilderType.OBSERVATION_REFERENCE_RANGE_NORMAL)
+					.build());
+		return this;
+	}	
+	
 	public Observation build() {
 		return observation;
 	}
-
-
 
 
 }

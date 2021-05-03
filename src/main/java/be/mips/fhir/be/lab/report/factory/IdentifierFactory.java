@@ -32,7 +32,8 @@ public class IdentifierFactory implements Factory<Identifier> {
 		switch (type) {
 		case SIMPLE:
 			identifierBuilder = new IdentifierBuilder()
-				.withValue("12345")
+				.withIdentifierUse(IdentifierUse.OFFICIAL)
+				.withValue(String.valueOf(faker.number().randomNumber(8, true)))
 				.withSystem("https://www.ehealth.fgov.be/standards/fhir/NamingSystem/ssin");
 			break;
 		case NIHDI:
@@ -44,6 +45,11 @@ public class IdentifierFactory implements Factory<Identifier> {
 			identifierBuilder = new IdentifierBuilder()
 					.withSystem("https://www.mips.random.be")
 					.withValue(String.valueOf(faker.number().randomNumber()));
+			break;
+		case EHEALTH_FGOV_BE_SSIN:
+			identifierBuilder = new IdentifierBuilder()
+				.withSystem("https://www.ehealth.fgov.be/standards/fhir/NamingSystem/ssin")
+				.withValue(String.valueOf(faker.number().randomNumber()));
 			break;
 		default:
 			identifierBuilder = new IdentifierBuilder();

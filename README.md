@@ -2,7 +2,7 @@
 FHIR Belgium Lab report example project
 
 # FHIR IHE Laboratory Report
-All information can be find on [https://build.fhir.org/ig/hl7-be/hl7-be-fhir-laboratory-report/](https://build.fhir.org/ig/hl7-be/hl7-be-fhir-laboratory-report/) 
+All information can be found on [https://build.fhir.org/ig/hl7-be/hl7-be-fhir-laboratory-report/](https://build.fhir.org/ig/hl7-be/hl7-be-fhir-laboratory-report/) 
 
 # How to validate a laboratory report?
 ## Validator
@@ -14,7 +14,11 @@ All information can be find on [https://build.fhir.org/ig/hl7-be/hl7-be-fhir-lab
 ```
 - Validate your FHIR file against the FHIR BE lab report
 ```  
-  java -jar validator_cli.jar c:\temp\FHIR\BiochemistryReport.json -version 4.0 -ig https://build.fhir.org/ig/hl7-be-fhir-laboratory-report/  
+  java -jar validator_cli.jar c:\temp\FHIR\BiochemistryReport.json -version 4.0 -ig https://build.fhir.org/ig/hl7-be/hl7-be-fhir-laboratory-report/  
+```
+- Validate your FHIR file against the FHIR BE lab report and generate an html report
+```
+  java -jar validator_cli.jar c:\temp\FHIR\BiochemistryReport.json -version 4.0 -ig https://build.fhir.org/ig/hl7-be/hl7-be-fhir-laboratory-report/ -html-output BiochemistryExample.html
 ```
 # Howtos
 How to link an observation to a hierarchy of titles?
@@ -24,6 +28,12 @@ How to link an observation to a hierarchy of titles?
         Biochemie
             Ureum
 ```
+# TODOs
+- Add basedOn member
+- Add note members
+- Add referenceRange members
+- Add subtitles as Observation without value, but with subtitle as hasMember elements
+    
 # Issues
 ## Built-in Narrative Templates
 ### DiagnosticReport.html

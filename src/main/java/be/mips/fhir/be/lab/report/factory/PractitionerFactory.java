@@ -37,6 +37,7 @@ public class PractitionerFactory implements Factory<Practitioner> {
 				.withId(IdType.newRandomUuid())
 				.withMeta(new MetaBuilder()
 						.addProfile("https://www.ehealth.fgov.be/standards/fhir/StructureDefinition/be-practitioner"))
+				.addName(new HumanNameFactory().create(HumanNameBuilderType.RANDOM))
 				.addIdentifier(new IdentifierFactory()
 						.build(IdentfierBuilderType.NIHDI)
 						.withValue("554488997"));

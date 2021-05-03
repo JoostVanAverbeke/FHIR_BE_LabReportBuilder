@@ -29,12 +29,27 @@ public class CodeableConceptFactory implements Factory<CodeableConcept> {
 						.withDisplay("Laboratory")
 						.build());
 			break;
+		case MICROBIOLOGY:
+			builder = new CodeableConceptBuilder()
+					.addCoding(new CodingFactory()
+							.build(CodingBuilderType.DIAGNOSTIC_SERVICE_SECTION_ID)
+							.withCode("MB")
+							.withDisplay("Microbiology")
+							.build());
+			break;
 		case LABORATORY_OBSERVATION_CATEGORY:
 			builder = new CodeableConceptBuilder()
-			.addCoding(new CodingFactory()
+				.addCoding(new CodingFactory()
 					.build(CodingBuilderType.OBSERVATION_CATEGORY)
 					.withCode("laboratory")
 					.withDisplay("Laboratory")
+					.build());
+			break;
+		case OBSERVATION_REFERENCE_RANGE_NORMAL:
+			builder = new CodeableConceptBuilder()
+				.addCoding(new CodingFactory()
+					.build(CodingBuilderType.OBSERVATION_REFERENCE_RANGE_MEANING_CODES)
+					.withCode("normal")
 					.build());
 			break;
 		default:

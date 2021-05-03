@@ -14,6 +14,7 @@ import be.mips.fhir.be.lab.report.builders.IdentifierBuilder;
 import be.mips.fhir.be.lab.report.enums.CodeableConceptBuilderType;
 import be.mips.fhir.be.lab.report.enums.CodingBuilderType;
 import be.mips.fhir.be.lab.report.enums.DiagnosticReportBuilderType;
+import be.mips.fhir.be.lab.report.enums.IdentfierBuilderType;
 
 public class DiagnosticReportFactory implements Factory<DiagnosticReport> {
 
@@ -28,9 +29,9 @@ public class DiagnosticReportFactory implements Factory<DiagnosticReport> {
 	
 	public DiagnosticReportBuilder build(DiagnosticReportBuilderType type) {
 		DiagnosticReportBuilder builder;
+		Calendar effectiveCalendar = new Calendar.Builder().setDate(2021, Calendar.APRIL, 20).build();
 		switch(type) {
 		case BIOCHEMISTRY:
-			Calendar effectiveCalendar = new Calendar.Builder().setDate(2021, Calendar.APRIL, 20).build();
 			builder = new DiagnosticReportBuilder()
 				.withId(IdType.newRandomUuid())
 				.withLanguage("en")
@@ -53,6 +54,25 @@ public class DiagnosticReportFactory implements Factory<DiagnosticReport> {
 				.withEffectiveDateTime(effectiveCalendar)
 				.withIssued(new Date())
 				.withConclusion("The JVA conclusion");
+			break;
+		case MICROBIOLOGY:
+			builder = new DiagnosticReportBuilder()
+			.withId(IdType.newRandomUuid())
+			.withLanguage("en")
+			.addIdentifier(new IdentifierFactory().create(IdentfierBuilderType.EHEALTH_FGOV_BE_SSIN))
+			.withStatus(DiagnosticReportStatus.PRELIMINARY)
+			.addCategory(new CodeableConceptFactory()
+					.create(CodeableConceptBuilderType.MICROBIOLOGY))
+			.withCode(new CodeableConceptBuilder()
+					.addCoding(new CodingFactory()
+							.build(CodingBuilderType.LOINC)
+							.withCode("18723-7")
+							.withDisplay("Hematology studies (set)")
+							.build())
+					.build())
+			.withEffectiveDateTime(effectiveCalendar)
+			.withIssued(new Date())
+			.withConclusion("The JVA conclusion");
 			break;
 		default:
 			builder = new DiagnosticReportBuilder();

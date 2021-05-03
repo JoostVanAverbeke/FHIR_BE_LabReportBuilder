@@ -22,8 +22,7 @@ public class MetaBuilder implements Builder<Meta> {
 	}
 	
 	public Meta build() {
-		// TODO Auto-generated method stub
-		return null;
+		return meta;
 	}
 
 }

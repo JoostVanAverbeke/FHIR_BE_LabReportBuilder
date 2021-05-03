@@ -11,6 +11,8 @@ import org.hl7.fhir.r4.model.IdType;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Resource;
 
+import be.mips.fhir.be.lab.report.models.ObservationRequestGroup;
+
 public class BundleBuilder implements Builder<Bundle> {
 
 	private final Bundle bundle;
@@ -59,6 +61,21 @@ public class BundleBuilder implements Builder<Bundle> {
 		return this;
 	}
 	
+	public BundleBuilder addObservationRequestGroupAsEntries(
+			List<ObservationRequestGroup> observationRequestGroups) {
+		// First add all observations
+		for (ObservationRequestGroup observationRequestGroup : observationRequestGroups) {
+			for (ObservationBuilder observationBuilder : observationRequestGroup.getObservations()) {
+				addEntry(observationBuilder.build());				
+			}
+		}
+		// Next add all service requests
+		for (ObservationRequestGroup observationRequestGroup : observationRequestGroups) {
+			addEntry(observationRequestGroup.getServiceRequest());
+		}
+		return this;
+	}
+
 	public Bundle build() {
 		return bundle;
 	}

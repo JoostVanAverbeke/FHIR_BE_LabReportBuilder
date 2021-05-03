@@ -4,5 +4,6 @@ public enum SpecimenBuilderType {
 	SIMPLE, 
 	RANDOM, 
 	DEFAULT, 
-	BLOOD
+	BLOOD, 
+	BAL
 }
