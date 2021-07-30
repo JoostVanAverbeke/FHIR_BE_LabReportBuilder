@@ -155,7 +155,11 @@ public class DiagnosticReportBuilder implements Builder<DiagnosticReport> {
 	public DiagnosticReportBuilder addObservationRequestGroups(IBaseResource subject, List<ObservationRequestGroup> observationRequestGroups) {
 		withSubject(subject);
 		for (ObservationRequestGroup observationRequestGroup : observationRequestGroups) {
-			addBasedOn(observationRequestGroup.getServiceRequestBuilder());
+			/*
+				Do not add all ServiceRequests for this report to the diagnostic report.
+				We should add a ServiceRequest that represents the order placer.
+				addBasedOn(observationRequestGroup.getServiceRequestBuilder());
+			*/
 			observationRequestGroup.getServiceRequestBuilder().withSubject(subject);
 			for (ObservationBuilder observationBuilder : observationRequestGroup.getObservations()) {
 				observationBuilder.withSubject(subject);

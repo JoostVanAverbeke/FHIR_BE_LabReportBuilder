@@ -1,9 +1,13 @@
 package be.mips.fhir.be.lab.report.builders;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.apache.commons.lang3.builder.Builder;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.instance.model.api.IIdType;
 import org.hl7.fhir.r4.model.CodeableConcept;
+import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Identifier;
 import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Reference;
@@ -18,6 +22,10 @@ public class ServiceRequestBuilder implements Builder<ServiceRequest> {
 	public ServiceRequestBuilder() {
 		serviceRequest = new ServiceRequest();
 		serviceRequest.setIntent(ServiceRequestIntent.ORDER);
+	}
+
+	public ServiceRequestBuilder addIdentifier(IdentifierBuilder identifierBuilder) {
+		return addIdentifier(identifierBuilder.build());
 	}
 
 	public ServiceRequestBuilder addIdentifier(Identifier identifier) {
@@ -65,8 +73,13 @@ public class ServiceRequestBuilder implements Builder<ServiceRequest> {
 		return this;
 	}
 	
+	public ServiceRequestBuilder withAuthoredOn(Date date) {
+		serviceRequest.setAuthoredOn(date);
+		return this;
+	}
+	
 	public ServiceRequest build() {
 		return serviceRequest;
 	}
-
+	
 }

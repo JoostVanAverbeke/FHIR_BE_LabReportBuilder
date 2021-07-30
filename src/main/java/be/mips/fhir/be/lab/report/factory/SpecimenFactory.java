@@ -91,6 +91,31 @@ public class SpecimenFactory implements Factory<Specimen> {
 //									.withCode("28520004")
 //									.withDisplay("Venipuncture for blood test (procedure)"))));
 			break;
+		case STOOL:
+			specimenBuilder = new SpecimenBuilder()
+			.withId(IdType.newRandomUuid())
+			.withMeta(new MetaBuilder()
+					.withVersionId("1")
+					.addProfile("https://www.ehealth.fgov.be/standards/fhir/StructureDefinition/be-specimen-laboratory"))
+			.addIdentifier(new IdentifierFactory()
+					.build(IdentfierBuilderType.RANDOM)
+					.build())
+			.withStatus(SpecimenStatus.AVAILABLE)
+			.withType(new CodeableConceptBuilder()
+					.addCoding(new CodingFactory()
+							.build(CodingBuilderType.SNOMED)
+							.withCode("119339001")
+							.withDisplay("Stool specimen")))
+			.withReceivedTime(receivedDate);
+//			TODO(JVA) Lookup collection method for BAL-vocht			
+//			.withCollection(new SpecimenCollectionComponentBuilder()
+//					.withCollectionDateTime(collectionCalendar)
+//					.withMethod(new CodeableConceptBuilder()
+//							.addCoding(new CodingFactory()
+//									.build(CodingBuilderType.SNOMED)
+//									.withCode("28520004")
+//									.withDisplay("Venipuncture for blood test (procedure)"))));
+
 		default:
 			specimenBuilder = new SpecimenBuilder();
 			break;

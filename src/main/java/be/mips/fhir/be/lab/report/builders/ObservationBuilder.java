@@ -174,7 +174,7 @@ public class ObservationBuilder implements Builder<Observation> {
 	public ObservationBuilder addReferenceRange(QuantityComparator comparator, double high) {
 		observation.addReferenceRange()
 			.setHigh(new Quantity()
-					.setComparator(comparator).setValue(high))
+					.setValue(high))
 			.setType(new CodeableConceptFactory()
 					.build(CodeableConceptBuilderType.OBSERVATION_REFERENCE_RANGE_NORMAL)
 					.build());

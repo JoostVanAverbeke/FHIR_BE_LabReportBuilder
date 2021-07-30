@@ -21,19 +21,37 @@ All information can be found on [https://build.fhir.org/ig/hl7-be/hl7-be-fhir-la
   java -jar validator_cli.jar c:\temp\FHIR\BiochemistryReport.json -version 4.0 -ig https://build.fhir.org/ig/hl7-be/hl7-be-fhir-laboratory-report/ -html-output BiochemistryExample.html
 ```
 # Howtos
-How to link an observation to a hierarchy of titles?
-- Ureum has subtitle 'Biochemie', which has a parent title 'SCHEIKUNDE'
-```
-    SCHEIKUNDE
-        Biochemie
-            Ureum
-```
+- What if a title has no corresponding LOINC, SNOMED-CT, ALBERTCODE? [BeObservationCodeableConcept](http://build.fhir.org/ig/hl7-be/hl7-be-fhir-laboratory-report/StructureDefinition-be-observationcodeableconcept.html)?
+- DiagnosticReport must refer a ServiceRequest (DiagnosticReport.basedOn has cardinality 
+  1..1). A reference to a ServiceRequest SHALL be given here that minimally includes the time of prescription.
+- FHIR BE Validator reports:
+  ```
+  Bundle.entry[12].resource.referenceRange[0].high.comparator (l743/c8)   error   This property must be an Array, not a primitive property
+  Bundle.entry[24].resource.referenceRange[0].high.comparator (l1553/c8)  error   This property must be an Array, not a primitive property
+  ```
+  Json message contains:
+  ```
+              "referenceRange": [
+                    {
+                        "high": {
+                            "value": 1.0,
+                            "comparator": "<"
+                        },
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/referencerange-meaning",
+                                    "code": "normal"
+                                }
+                            ]
+                        }
+                    }
+                ]
+
+  ```
+I have no clue, what is wrong.   
 # TODOs
-- Add basedOn member
-- Add note members
-- Add referenceRange members
-- Add subtitles as Observation without value, but with subtitle as hasMember elements
-    
+Implement Microbiology Reports    
 # Issues
 ## Built-in Narrative Templates
 ### DiagnosticReport.html

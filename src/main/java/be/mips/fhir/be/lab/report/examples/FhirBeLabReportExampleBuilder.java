@@ -7,15 +7,13 @@ import java.util.List;
 
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Bundle.BundleType;
-import org.hl7.fhir.r4.model.Observation.ObservationStatus;
 import org.hl7.fhir.r4.model.IdType;
+import org.hl7.fhir.r4.model.Observation.ObservationStatus;
 import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.Practitioner;
 import org.hl7.fhir.r4.model.Quantity.QuantityComparator;
-import org.hl7.fhir.r4.model.ServiceRequest;
 import org.hl7.fhir.r4.model.ServiceRequest.ServiceRequestStatus;
 import org.hl7.fhir.r4.model.Specimen;
-import org.hl7.fhir.r4.model.codesystems.RequestStatus;
 
 import be.mips.fhir.be.lab.report.builders.AnnotationBuilder;
 import be.mips.fhir.be.lab.report.builders.BundleBuilder;
@@ -28,6 +26,7 @@ import be.mips.fhir.be.lab.report.builders.ServiceRequestBuilder;
 import be.mips.fhir.be.lab.report.enums.CodeableConceptBuilderType;
 import be.mips.fhir.be.lab.report.enums.CodingBuilderType;
 import be.mips.fhir.be.lab.report.enums.DiagnosticReportBuilderType;
+import be.mips.fhir.be.lab.report.enums.IdentfierBuilderType;
 import be.mips.fhir.be.lab.report.enums.ObservationBuilderType;
 import be.mips.fhir.be.lab.report.enums.PatientBuilderType;
 import be.mips.fhir.be.lab.report.enums.PractitionerBuilderType;
@@ -36,6 +35,7 @@ import be.mips.fhir.be.lab.report.enums.SpecimenBuilderType;
 import be.mips.fhir.be.lab.report.factory.CodeableConceptFactory;
 import be.mips.fhir.be.lab.report.factory.CodingFactory;
 import be.mips.fhir.be.lab.report.factory.DiagnosticReportFactory;
+import be.mips.fhir.be.lab.report.factory.IdentifierFactory;
 import be.mips.fhir.be.lab.report.factory.ObservationFactory;
 import be.mips.fhir.be.lab.report.factory.PatientFactory;
 import be.mips.fhir.be.lab.report.factory.PractitionerFactory;
@@ -55,6 +55,7 @@ public class FhirBeLabReportExampleBuilder {
 	      
 	      Bundle tempMicrobiologyReportBundle = createTempMicrobiologyReportBundle();
 	      
+	      Bundle microbiologyReportBundle = createMicrobiologyReportBundle();
 	      // Use the narrative generator
 	      ctx.setNarrativeGenerator(new DefaultThymeleafNarrativeGenerator());
 
@@ -64,7 +65,10 @@ public class FhirBeLabReportExampleBuilder {
 	}
 	
 	private static Bundle createBioChemistryReportBundle() {
-	      // Create patient resource
+		@SuppressWarnings("deprecation")
+		Date authoredOnDateTime = new Date(121, 3, 19, 8, 0, 0);
+
+		// Create patient resource
 	      Patient patient = new PatientFactory().create(PatientBuilderType.SIMPLE);
 	      
 	      // Create a practitioner resource
@@ -94,6 +98,17 @@ public class FhirBeLabReportExampleBuilder {
 	      // Add patient, service requests and observations to the bioChemistry report
 	      bioChemistryReportBuilder.addObservationRequestGroups(patient, observationRequestGroups);
 	      
+		// Add ServiceRequest representing the order placer order to the diagnostic report
+	      ServiceRequestBuilder orderPlacerServiceRequestBuilder = new ServiceRequestFactory()
+	    		  .build(ServiceRequestBuilderType.RANDOM)
+		    	  .withStatus(ServiceRequestStatus.COMPLETED)
+		    	  .withAuthoredOn(authoredOnDateTime)
+		    	  .withSubject(patient)
+		    	  .addIdentifier(new IdentifierFactory()
+		    			  .build(IdentfierBuilderType.RANDOM));
+
+	      bioChemistryReportBuilder.addBasedOn(orderPlacerServiceRequestBuilder);
+
 	      // Add specimen to bioChemistry diagnostic report
 	      bioChemistryReportBuilder.addSpecimen(specimen);
 	      // Add performer to bioChemistry diagnostic report
@@ -123,6 +138,9 @@ public class FhirBeLabReportExampleBuilder {
 	      // Add the specimen as an entry.
 	      bundleBuilder.addEntry(specimen);
 
+	      // Add the order placer service request to bundle
+	      bundleBuilder.addEntry(orderPlacerServiceRequestBuilder.build());
+	      
 	      // Add the observations as bundle entries.
 	      bundleBuilder.addObservationRequestGroupAsEntries(observationRequestGroups);
 	      
@@ -149,7 +167,7 @@ public class FhirBeLabReportExampleBuilder {
 	      // Add practitioner as resultsInterpreter to the bioChemistryReportBuilder
 	      microbiologyReportBuilder.addResultsInterpreter(practitioner);
 	      
-	      List<ObservationBuilder> observationBuilders = createTempMicrobiologyObservationBuilders();
+//	      List<ObservationBuilder> observationBuilders = createTempMicrobiologyObservationBuilders();
 	      
 	      // Add performer to the list of observations
 //	      setPerformer(performer, observationBuilders);
@@ -193,7 +211,7 @@ public class FhirBeLabReportExampleBuilder {
 	}
 
 	private static List<ObservationRequestGroup> createBiochemistryObservationRequestGroups() {
-		List<ObservationRequestGroup> observationBuilders = new ArrayList<ObservationRequestGroup>();
+		List<ObservationRequestGroup> observationRequestGroups = new ArrayList<ObservationRequestGroup>();
 		Date issuedDate = new Date();
 		Calendar effectiveDateTime = new Calendar.Builder()
 		        .setDate(2021, 3, 20)
@@ -221,7 +239,8 @@ public class FhirBeLabReportExampleBuilder {
             .withCode(new CodeableConceptBuilder()
 		        .addCoding(new CodingFactory()
 			        .build(CodingBuilderType.LOINC)
-			        .withCode("9991-9")
+			        /* TODO(JVA), I could find the correct LOINC code for "Uitzicht serum/plasma" */
+			        .withCode("2692-2")
                     .withDisplay("Uitzicht serum/plasma")))
             .withEffectiveDateTime(effectiveDateTime)
             .withIssued(issuedDate);
@@ -252,7 +271,7 @@ public class FhirBeLabReportExampleBuilder {
 		        .addCoding(new CodingFactory()
 			        .build(CodingBuilderType.LOINC)
 			        .withCode("18723-7")
-                    .withDisplay("Hematology")));
+                    .withDisplay("Hematology studies (set)")));
 	    
 	    // Create Screening title observation resource
 	    ObservationBuilder screeningObservationBuilder = observationFactory
@@ -265,7 +284,7 @@ public class FhirBeLabReportExampleBuilder {
 		        .addCoding(new CodingFactory()
 			        .build(CodingBuilderType.LOINC)
 			        .withCode("47288-6")
-                    .withDisplay("CBC WO Differential panel (BldCo)")));
+                    .withDisplay("CBC WO Differential panel - Cord blood")));
 	    		    
 	    // Create Hemoglobine Observation
 		ObservationBuilder hgbObservationBuilder = observationFactory
@@ -411,7 +430,7 @@ public class FhirBeLabReportExampleBuilder {
 		        .addCoding(new CodingFactory()
 				        .build(CodingBuilderType.LOINC)
 				        .withCode("24326-1")
-	                    .withDisplay("Electrolytes")));
+	                    .withDisplay("Electrolytes 1998 panel - Serum or Plasma")));
 
         // Create chemistry observation resources
 	    ObservationBuilder chemistryObservationBuilder = observationFactory
@@ -422,8 +441,7 @@ public class FhirBeLabReportExampleBuilder {
             		.build(CodeableConceptBuilderType.LABORATORY_OBSERVATION_CATEGORY))
             .withCode(new CodeableConceptBuilder()
 		        .addCoding(new CodingFactory()
-			        .build(CodingBuilderType.LOINC)
-			        .withCode("LP31388-9")
+			        .build(CodingBuilderType.DEFAULT)
                     .withDisplay("Chemistry")));
 	    
 	    ObservationBuilder ionsObservationBuilder = observationFactory
@@ -434,8 +452,7 @@ public class FhirBeLabReportExampleBuilder {
 	            		.build(CodeableConceptBuilderType.LABORATORY_OBSERVATION_CATEGORY))
 	            .withCode(new CodeableConceptBuilder()
 			        .addCoding(new CodingFactory()
-				        .build(CodingBuilderType.LOINC)
-				        .withCode("LP9999-9")
+				        .build(CodingBuilderType.DEFAULT)
 	                    .withDisplay("Ions")));
         
 	    
@@ -557,7 +574,7 @@ public class FhirBeLabReportExampleBuilder {
 		        .addCoding(new CodingFactory()
 				        .build(CodingBuilderType.LOINC)
 				        .withCode("78699-6")
-	                    .withDisplay("Liver fibrosis score panel")));
+	                    .withDisplay("Liver fibrosis score panel - Serum or Plasma Calculated by FibroMeter")));
 
         // Create BioChemie observations
 	    ObservationBuilder bioChemistryObservationBuilder = observationFactory
@@ -568,8 +585,7 @@ public class FhirBeLabReportExampleBuilder {
 	            		.build(CodeableConceptBuilderType.LABORATORY_OBSERVATION_CATEGORY))
 	            .withCode(new CodeableConceptBuilder()
 			        .addCoding(new CodingFactory()
-				        .build(CodingBuilderType.LOINC)
-				        .withCode("LP9999-10")
+				        .build(CodingBuilderType.DEFAULT)
 	                    .withDisplay("Biochemistry")));
 
 	    // Create Ureum observation
@@ -685,8 +701,7 @@ public class FhirBeLabReportExampleBuilder {
 	            		.build(CodeableConceptBuilderType.LABORATORY_OBSERVATION_CATEGORY))
 	            .withCode(new CodeableConceptBuilder()
 			        .addCoding(new CodingFactory()
-				        .build(CodingBuilderType.LOINC)
-				        .withCode("LP9999-11")
+				        .build(CodingBuilderType.DEFAULT)
 	                    .withDisplay("Inflammation")));
 
 	    // Create CRP observation
@@ -741,13 +756,13 @@ public class FhirBeLabReportExampleBuilder {
 	    	.addHasMember(bioChemistryObservationBuilder)
 	    	.addHasMember(inflammationObservationBuilder);
 
-		observationBuilders.add(suitzObservationRequestGroup);
-		observationBuilders.add(bloodCountObservationRequestGroup);
-		observationBuilders.add(electrolytesObservationRequestGroup);
-		observationBuilders.add(liverObservationRequestGroup);
-        observationBuilders.add(crpObservationRequestGroup);
+		observationRequestGroups.add(suitzObservationRequestGroup);
+		observationRequestGroups.add(bloodCountObservationRequestGroup);
+		observationRequestGroups.add(electrolytesObservationRequestGroup);
+		observationRequestGroups.add(liverObservationRequestGroup);
+        observationRequestGroups.add(crpObservationRequestGroup);
 
-        return observationBuilders;
+        return observationRequestGroups;
 	}
 
 	private static List<ObservationBuilder> createTempMicrobiologyObservationBuilders() {
@@ -760,5 +775,93 @@ public class FhirBeLabReportExampleBuilder {
 		return observationBuilders;
 	}
 
+	private static Bundle createMicrobiologyReportBundle() {
+		@SuppressWarnings("deprecation")
+		Date authoredOnDateTime = new Date(121, 3, 19, 8, 0, 0);
+
+		// Create patient resource
+		Patient patient = new PatientFactory().create(PatientBuilderType.RANDOM);
+		
+		// Create a practitioner resource
+		Practitioner practitioner = new PractitionerFactory().create(PractitionerBuilderType.RANDOM);
+		
+		// Create performer of observations
+		Practitioner performer = new PractitionerFactory().create(PractitionerBuilderType.RANDOM);
+		
+		// Create BAL-vocht specimen
+		Specimen specimen = new SpecimenFactory().create(SpecimenBuilderType.STOOL);
+		
+		// Create temp microbiology diagnostic report
+		DiagnosticReportBuilder microbiologyReportBuilder = new DiagnosticReportFactory().build(
+				DiagnosticReportBuilderType.MICROBIOLOGY);
+				
+		// Add practitioner as resultsInterpreter to the bioChemistryReportBuilder
+		microbiologyReportBuilder.addResultsInterpreter(practitioner);
+		
+		List<ObservationRequestGroup> observationRequestGroups = createMicrobiologyObservationRequestGroups();
+		
+		// Add performer to the list of observations
+		setPerformer(performer, observationRequestGroups);
+		
+		// Add specimen to the list of observations
+		setSpecimen(specimen, observationRequestGroups);
+		
+		// Add patient, service requests and observations to the bioChemistry report
+		microbiologyReportBuilder.addObservationRequestGroups(patient, observationRequestGroups);
+		
+		// Add ServiceRequest representing the order placer order to the diagnostic report
+		ServiceRequestBuilder orderPlacerServiceRequestBuilder = new ServiceRequestFactory()
+				.build(ServiceRequestBuilderType.RANDOM)
+				.withStatus(ServiceRequestStatus.COMPLETED)
+				.withAuthoredOn(authoredOnDateTime)
+				.withSubject(patient)
+				.addIdentifier(new IdentifierFactory()
+					.build(IdentfierBuilderType.RANDOM));
+		
+		microbiologyReportBuilder.addBasedOn(orderPlacerServiceRequestBuilder);
+		
+		// Add specimen to bioChemistry diagnostic report
+		microbiologyReportBuilder.addSpecimen(specimen);
+		// Add performer to bioChemistry diagnostic report
+		microbiologyReportBuilder.addPerformer(performer);
+		
+		// Create a Bundle
+		BundleBuilder bundleBuilder = new BundleBuilder()
+				.withId(IdType.newRandomUuid())
+				.withIdentifier(new IdentifierBuilder()
+						.withSystem("urn:ietf:rfc:3986")
+				  .withValue("")
+						  .build())
+				.withType(BundleType.COLLECTION);
+		
+		// Add the bioChemistryReport as an entry
+		bundleBuilder.addEntry(microbiologyReportBuilder.build());
+		
+		// Add the patient as an entry.
+		bundleBuilder.addEntry(patient);
+		
+		// Add the practitioner as an entry.
+		bundleBuilder.addEntry(practitioner);
+		
+		// Add the performer as an entry.
+		bundleBuilder.addEntry(performer);
+		
+		// Add the specimen as an entry.
+		bundleBuilder.addEntry(specimen);
+		
+		// Add the order placer service request to bundle
+		bundleBuilder.addEntry(orderPlacerServiceRequestBuilder.build());
+		
+		// Add the observations as bundle entries.
+		bundleBuilder.addObservationRequestGroupAsEntries(observationRequestGroups);
+		
+		return bundleBuilder.build();
+	}
+
+	private static List<ObservationRequestGroup> createMicrobiologyObservationRequestGroups() {
+		List<ObservationRequestGroup> observationRequestGroups = new ArrayList<ObservationRequestGroup>();
+		
+		return observationRequestGroups;
+	}
 
 }
